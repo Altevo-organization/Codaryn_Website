@@ -1,0 +1,17 @@
+<svg width="140" height="40" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder logo - remplacez par votre vrai logo -->
+  <rect x="0" y="0" width="40" height="40" rx="8" fill="url(#gradient)"/>
+  <text x="20" y="27" fill="white" font-family="system-ui, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">A</text>
+  <text x="52" y="27" fill="white" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">Alté</text>
+  <text x="97" y="27" fill="url(#textGradient)" font-family="system-ui, sans-serif" font-size="22" font-weight="bold">vo</text>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+</svg>
