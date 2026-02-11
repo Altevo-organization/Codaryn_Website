@@ -12,14 +12,14 @@ interface PageHeroProps {
 export function PageHero({ badge, title, highlightedWord, description }: PageHeroProps) {
   return (
     <MotionDiv className="max-w-4xl mx-auto text-center">
-      <span className="text-altevo-violet-light text-sm font-semibold uppercase tracking-wider mb-4 block">
+      <span className="text-altevo-yellow text-xs md:text-sm font-semibold uppercase tracking-wider mb-3 md:mb-4 block font-mono">
         {badge}
       </span>
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
         {title}{" "}
-        <span className="gradient-text">{highlightedWord}</span>
+        <span className="gradient-text-fire">{highlightedWord}</span>
       </h1>
-      <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+      <p className="text-sm md:text-lg text-zinc-400 max-w-2xl mx-auto">
         {description}
       </p>
     </MotionDiv>

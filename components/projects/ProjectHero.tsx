@@ -1,128 +1,103 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, Building2 } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { MotionDiv } from "@/components/MotionWrapper";
-import { DynamicIcon } from "@/lib/icons";
+import { ArrowLeft, Clock, Calendar, Tag, ExternalLink } from "lucide-react";
+import * as LucideIcons from "lucide-react";
+import { motion } from "framer-motion";
 import type { Project } from "@/lib/projects";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-interface ProjectHeroProps {
-  project: Project;
+function getIcon(iconName: string) {
+  const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
+  const Icon = icons[iconName];
+  return Icon || LucideIcons.Folder;
 }
 
-export function ProjectHero({ project }: ProjectHeroProps) {
+export function ProjectHero({ project }: { project: Project }) {
+  const prefersReducedMotion = useReducedMotion();
+  const Icon = getIcon(project.iconName);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: prefersReducedMotion ? 0 : 0.1 },
+    },
+  };
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
 
   return (
-    <section className="pt-24 pb-12 md:pt-32 md:pb-16 relative overflow-hidden">
-      {/* Background gradient */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-30`}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-altevo-dark via-altevo-dark/80 to-transparent" />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Back button */}
-        <MotionDiv className="mb-8">
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className="gap-2 text-slate-400 hover:text-white"
-          >
-            <Link href="/realisations">
-              <ArrowLeft className="w-4 h-4" />
-              Retour aux projets
+    <section className="pt-28 pb-16 md:pt-36 md:pb-20 relative overflow-hidden">
+      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradientFrom} ${project.gradientTo} opacity-5`} />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-4xl mx-auto">
+          <motion.div variants={itemVariants}>
+            <Link href="/realisations" className="inline-flex items-center gap-2 text-zinc-400 hover:text-altevo-yellow text-sm mb-8 transition-colors">
+              <ArrowLeft className="w-4 h-4" /> Retour aux réalisations
             </Link>
-          </Button>
-        </MotionDiv>
+          </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <MotionDiv delay={0.1}>
-            {/* Category & Sector */}
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="text-altevo-violet-light text-sm font-semibold uppercase tracking-wider">
-                {project.category}
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
-              <span className="text-slate-400 text-sm flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5" />
-                {project.sector}
-              </span>
+          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4 flex-wrap">
+            <span className="text-altevo-yellow text-xs font-mono uppercase tracking-wider">{project.category}</span>
+            <span className="text-zinc-600">|</span>
+            <span className="text-zinc-400 text-xs">{project.sector}</span>
+            {project.confidentialityLevel === "anonymized" && (
+              <span className="px-2 py-0.5 rounded bg-altevo-orange/10 text-altevo-orange text-[10px] font-mono">Anonymisé</span>
+            )}
+          </motion.div>
+
+          <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+            {project.title}
+          </motion.h1>
+
+          <motion.p variants={itemVariants} className="text-xl text-zinc-400 mb-8">
+            {project.subtitle}
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-8">
+            <div className="flex items-center gap-2 text-zinc-400 text-sm">
+              <Clock className="w-4 h-4 text-altevo-yellow" />
+              <span>{project.duration}</span>
             </div>
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-              {project.title}
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-xl text-slate-300 mb-6">{project.subtitle}</p>
-
-            {/* Description */}
-            <p className="text-slate-400 text-lg leading-relaxed mb-8">
-              {project.longDescription}
-            </p>
-
-            {/* Meta info */}
-            <div className="flex flex-wrap items-center gap-6 text-sm">
-              <div className="flex items-center gap-2 text-slate-300">
-                <Clock className="w-4 h-4 text-altevo-violet-light" />
-                <span>
-                  Durée : <strong>{project.duration}</strong>
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-300">
-                <Calendar className="w-4 h-4 text-altevo-violet-light" />
-                <span>
-                  Livraison : <strong>{project.year}</strong>
-                </span>
-              </div>
+            <div className="flex items-center gap-2 text-zinc-400 text-sm">
+              <Calendar className="w-4 h-4 text-altevo-yellow" />
+              <span>{project.year}</span>
             </div>
-          </MotionDiv>
+            <div className="flex items-center gap-2 text-zinc-400 text-sm">
+              <Tag className="w-4 h-4 text-altevo-yellow" />
+              <span>{project.tags.join(", ")}</span>
+            </div>
+          </motion.div>
 
-          {/* Icon visual */}
-          <MotionDiv delay={0.2} className="flex justify-center lg:justify-end">
-            <div className="relative">
-              {/* Glow effect */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradientFrom} ${project.gradientTo} blur-3xl opacity-20 scale-150`}
-              />
-
-              {/* Main icon container */}
-              <div
-                className={`relative w-48 h-48 md:w-64 md:h-64 rounded-3xl bg-gradient-to-br ${project.gradientFrom} ${project.gradientTo} flex items-center justify-center shadow-2xl`}
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
+            {project.demoUrl ? (
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="magnetic-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-semibold text-sm hover:shadow-lg hover:shadow-altevo-yellow/25 transition-all duration-300"
               >
-                {/* Pattern overlay */}
-                <div className="absolute inset-0 rounded-3xl opacity-20">
-                  <div
-                    className="absolute inset-0 rounded-3xl"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-                      backgroundSize: "16px 16px",
-                    }}
-                  />
-                </div>
-
-                <DynamicIcon name={project.iconName} className="w-24 h-24 md:w-32 md:h-32 text-white relative z-10" />
-              </div>
-
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 rounded-xl bg-altevo-dark-light border border-altevo-dark-accent/50 flex items-center justify-center shadow-lg">
-                <span className="text-lg">
-                  {project.sector === "Transport & Logistique" ? "📦" : "🏥"}
-                </span>
-              </div>
-              <div className="absolute -bottom-4 -left-4 w-12 h-12 rounded-xl bg-altevo-dark-light border border-altevo-dark-accent/50 flex items-center justify-center shadow-lg">
-                <span className="text-lg">
-                  {project.sector === "Transport & Logistique" ? "🚚" : "📱"}
-                </span>
-              </div>
-            </div>
-          </MotionDiv>
-        </div>
+                <ExternalLink className="w-4 h-4" /> Tester la démo
+              </a>
+            ) : (
+              <Link
+                href={`/realisations/${project.slug}/demo`}
+                className="magnetic-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-semibold text-sm hover:shadow-lg hover:shadow-altevo-yellow/25 transition-all duration-300"
+              >
+                <ExternalLink className="w-4 h-4" /> Voir l&apos;aperçu
+              </Link>
+            )}
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-altevo-dark-accent text-white font-medium text-sm hover:bg-white/5 hover:border-altevo-yellow/30 transition-all duration-300"
+            >
+              Projet similaire ? Demander un devis
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

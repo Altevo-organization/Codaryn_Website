@@ -7,3 +7,4 @@ export { ProjectResults } from "./ProjectResults";
 export { ProjectTechStack } from "./ProjectTechStack";
 export { ProjectRole } from "./ProjectRole";
 export { ProjectCTA } from "./ProjectCTA";
+export { DemoExperience } from "./DemoExperience";

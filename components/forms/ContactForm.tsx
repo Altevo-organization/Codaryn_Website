@@ -96,7 +96,7 @@ export function ContactForm() {
         <h3 className="text-xl font-semibold text-white mb-2">
           Message envoyé avec succès !
         </h3>
-        <p className="text-slate-400 mb-6">
+        <p className="text-zinc-400 mb-6">
           Nous avons bien reçu votre demande et vous répondrons sous 24h.
         </p>
         <Button onClick={() => setStatus("idle")} variant="outline">
@@ -112,7 +112,7 @@ export function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name">
-            Nom complet <span className="text-red-500">*</span>
+            Nom complet <span className="text-altevo-red">*</span>
           </Label>
           <Input
             id="name"
@@ -122,7 +122,7 @@ export function ContactForm() {
             aria-describedby={errors.name ? "name-error" : undefined}
           />
           {errors.name && (
-            <p id="name-error" className="text-sm text-red-500 flex items-center gap-1">
+            <p id="name-error" className="text-sm text-altevo-red flex items-center gap-1">
               <AlertCircle className="w-4 h-4" />
               {errors.name.message}
             </p>
@@ -131,7 +131,7 @@ export function ContactForm() {
 
         <div className="space-y-2">
           <Label htmlFor="email">
-            Email <span className="text-red-500">*</span>
+            Email <span className="text-altevo-red">*</span>
           </Label>
           <Input
             id="email"
@@ -142,7 +142,7 @@ export function ContactForm() {
             aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <p id="email-error" className="text-sm text-red-500 flex items-center gap-1">
+            <p id="email-error" className="text-sm text-altevo-red flex items-center gap-1">
               <AlertCircle className="w-4 h-4" />
               {errors.email.message}
             </p>
@@ -162,7 +162,7 @@ export function ContactForm() {
             aria-describedby={errors.company ? "company-error" : undefined}
           />
           {errors.company && (
-            <p id="company-error" className="text-sm text-red-500 flex items-center gap-1">
+            <p id="company-error" className="text-sm text-altevo-red flex items-center gap-1">
               <AlertCircle className="w-4 h-4" />
               {errors.company.message}
             </p>
@@ -180,7 +180,7 @@ export function ContactForm() {
             aria-describedby={errors.phone ? "phone-error" : undefined}
           />
           {errors.phone && (
-            <p id="phone-error" className="text-sm text-red-500 flex items-center gap-1">
+            <p id="phone-error" className="text-sm text-altevo-red flex items-center gap-1">
               <AlertCircle className="w-4 h-4" />
               {errors.phone.message}
             </p>
@@ -191,7 +191,7 @@ export function ContactForm() {
       {/* Subject */}
       <div className="space-y-2">
         <Label htmlFor="subject">
-          Sujet <span className="text-red-500">*</span>
+          Sujet <span className="text-altevo-red">*</span>
         </Label>
         <Input
           id="subject"
@@ -201,7 +201,7 @@ export function ContactForm() {
           aria-describedby={errors.subject ? "subject-error" : undefined}
         />
         {errors.subject && (
-          <p id="subject-error" className="text-sm text-red-500 flex items-center gap-1">
+          <p id="subject-error" className="text-sm text-altevo-red flex items-center gap-1">
             <AlertCircle className="w-4 h-4" />
             {errors.subject.message}
           </p>
@@ -211,7 +211,7 @@ export function ContactForm() {
       {/* Message */}
       <div className="space-y-2">
         <Label htmlFor="message">
-          Message <span className="text-red-500">*</span>
+          Message <span className="text-altevo-red">*</span>
         </Label>
         <Textarea
           id="message"
@@ -222,7 +222,7 @@ export function ContactForm() {
           aria-describedby={errors.message ? "message-error" : undefined}
         />
         {errors.message && (
-          <p id="message-error" className="text-sm text-red-500 flex items-center gap-1">
+          <p id="message-error" className="text-sm text-altevo-red flex items-center gap-1">
             <AlertCircle className="w-4 h-4" />
             {errors.message.message}
           </p>
@@ -245,7 +245,7 @@ export function ContactForm() {
       <Button
         type="submit"
         size="lg"
-        className="w-full"
+        className="w-full bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-semibold hover:shadow-lg hover:shadow-altevo-yellow/20 transition-all duration-300"
         disabled={status === "loading"}
       >
         {status === "loading" ? (
@@ -262,11 +262,11 @@ export function ContactForm() {
       </Button>
 
       {/* Privacy note */}
-      <p className="text-xs text-slate-500 text-center">
+      <p className="text-xs text-zinc-500 text-center">
         En soumettant ce formulaire, vous acceptez notre{" "}
         <a
           href="/politique-confidentialite"
-          className="text-altevo-violet-light hover:underline"
+          className="text-altevo-yellow hover:underline"
         >
           politique de confidentialité
         </a>

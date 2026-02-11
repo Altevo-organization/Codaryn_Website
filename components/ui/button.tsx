@@ -5,20 +5,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-altevo-yellow/50 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "bg-gradient-to-r from-altevo-violet to-altevo-violet-light text-white hover:opacity-90 hover:shadow-lg hover:shadow-altevo-violet/25",
+          "bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-semibold hover:opacity-90 hover:shadow-lg hover:shadow-altevo-yellow/25",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-altevo-violet/50 bg-transparent text-altevo-violet-light hover:bg-altevo-violet/10 hover:border-altevo-violet",
+          "border border-altevo-yellow/30 bg-transparent text-altevo-yellow hover:bg-altevo-yellow/10 hover:border-altevo-yellow/60",
         secondary:
-          "bg-altevo-dark-light text-white hover:bg-altevo-dark-accent",
-        ghost: "hover:bg-altevo-dark-light hover:text-white",
-        link: "text-altevo-violet-light underline-offset-4 hover:underline",
+          "bg-white/[0.06] text-white hover:bg-white/[0.1]",
+        ghost: "hover:bg-white/[0.06] hover:text-white",
+        link: "text-altevo-yellow underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 px-6 py-2",

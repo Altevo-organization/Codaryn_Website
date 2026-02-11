@@ -1,58 +1,49 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { Shield, Zap, Users, HeartHandshake, Code2, Layers } from "lucide-react";
+import { StaggerContainer, StaggerItem, MotionDiv } from "@/components/MotionWrapper";
 
-import { Button } from "@/components/ui/button";
-import { MotionDiv } from "@/components/MotionWrapper";
-
-const additionalBenefits = [
-  "Technologies modernes et éprouvées",
-  "Code source documenté et maintenable",
-  "Formation des utilisateurs incluse",
-  "Support technique réactif",
-  "Conformité RGPD",
-  "Sécurité intégrée dès la conception",
+const benefits = [
+  { icon: Shield, title: "Code livré", description: "Vous êtes propriétaire du code source. Pas d'enfermement propriétaire." },
+  { icon: Zap, title: "Performance first", description: "Applications optimisées pour la vitesse et la scalabilité." },
+  { icon: Users, title: "Accompagnement", description: "Formation, documentation et support inclus dans chaque projet." },
+  { icon: HeartHandshake, title: "Engagement qualité", description: "Tests automatisés, revue de code et bonnes pratiques OWASP." },
+  { icon: Code2, title: "Technologies modernes", description: "React, Next.js, Node.js, PostgreSQL — stack éprouvée et maintenable." },
+  { icon: Layers, title: "Architecture évolutive", description: "Conçu pour grandir avec votre entreprise sans tout refaire." },
 ];
 
 export function BenefitsGrid() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <MotionDiv>
-        <span className="text-altevo-violet-light text-sm font-semibold uppercase tracking-wider mb-4 block">
-          Pourquoi nous choisir
-        </span>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-          Un accompagnement complet à{" "}
-          <span className="gradient-text">chaque étape</span>
+    <div>
+      <MotionDiv className="text-center mb-8 md:mb-12">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+          Pourquoi choisir <span className="gradient-text-fire">Altévo</span>
         </h2>
-        <p className="text-slate-400 mb-8">
-          Nous ne livrons pas simplement un logiciel : nous vous accompagnons
-          de A à Z, de l'analyse de vos besoins jusqu'à la mise en production
-          et au-delà. Notre objectif est de vous fournir une solution pérenne
-          qui évolue avec votre entreprise.
-        </p>
-        <Button asChild size="lg">
-          <Link href="/contact" className="gap-2">
-            Discuter de mon projet
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </Button>
       </MotionDiv>
 
-      <MotionDiv delay={0.2}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {additionalBenefits.map((benefit, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-3 p-4 rounded-lg bg-altevo-dark-light/50 border border-altevo-dark-accent/50"
-            >
-              <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />
-              <span className="text-sm text-slate-300">{benefit}</span>
+      {/* Mobile: 2-col compact bento grid */}
+      <div className="md:hidden grid grid-cols-2 gap-3 mb-6">
+        {benefits.map((benefit, i) => (
+          <div key={i} className="glass-card rounded-xl p-4">
+            <benefit.icon className="w-5 h-5 text-altevo-yellow mb-2" />
+            <h3 className="text-white font-semibold text-xs mb-1">{benefit.title}</h3>
+            <p className="text-zinc-500 text-[10px] leading-relaxed">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: 3-col stagger grid (unchanged) */}
+      <StaggerContainer className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {benefits.map((benefit, i) => (
+          <StaggerItem key={i}>
+            <div className="glass-card rounded-xl p-5 h-full">
+              <benefit.icon className="w-6 h-6 text-altevo-yellow mb-3" />
+              <h3 className="text-white font-semibold text-sm mb-1">{benefit.title}</h3>
+              <p className="text-zinc-400 text-xs leading-relaxed">{benefit.description}</p>
             </div>
-          ))}
-        </div>
-      </MotionDiv>
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
     </div>
   );
 }

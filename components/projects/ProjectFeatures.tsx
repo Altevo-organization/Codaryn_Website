@@ -1,59 +1,56 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { MotionDiv, StaggerContainer, StaggerItem } from "@/components/MotionWrapper";
-import { DynamicIcon } from "@/lib/icons";
+import * as LucideIcons from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { StaggerContainer, StaggerItem } from "@/components/MotionWrapper";
 
-interface ProjectFeaturesProps {
-  project: Project;
+function getIcon(iconName: string) {
+  const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
+  const Icon = icons[iconName];
+  return Icon || LucideIcons.CircleDot;
 }
 
-export function ProjectFeatures({ project }: ProjectFeaturesProps) {
+export function ProjectFeatures({ project }: { project: Project }) {
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <MotionDiv className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-altevo-violet-light text-sm font-semibold uppercase tracking-wider mb-3 block">
-            Fonctionnalites
-          </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-            Les fonctionnalites <span className="gradient-text">cles</span>
-          </h2>
-          <p className="text-slate-400">
-            Un ensemble de fonctionnalites pensees pour repondre aux besoins metier
-            specifiques du projet.
-          </p>
-        </MotionDiv>
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-12">
+            <span className="text-altevo-yellow text-sm font-mono uppercase tracking-wider">Contexte</span>
+            <p className="text-zinc-300 mt-3 leading-relaxed">{project.context}</p>
+          </div>
 
-        {/* Features grid */}
-        <StaggerContainer
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          staggerDelay={0.1}
-        >
-          {project.features.map((feature, index) => {
-            return (
-              <StaggerItem key={index}>
-                <Card className="h-full group hover:border-altevo-violet/30 transition-colors duration-300">
-                  <CardContent className="p-6">
-                    <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradientFrom} ${project.gradientTo} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <DynamicIcon name={feature.iconName} className="w-6 h-6 text-white" />
+          <div className="mb-12">
+            <span className="text-altevo-orange text-sm font-mono uppercase tracking-wider">Défi</span>
+            <p className="text-zinc-300 mt-3 leading-relaxed">{project.challenge}</p>
+          </div>
+
+          <div className="mb-16">
+            <span className="text-altevo-red text-sm font-mono uppercase tracking-wider">Solution</span>
+            <p className="text-zinc-300 mt-3 leading-relaxed">{project.solution}</p>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-8">
+            Fonctionnalités <span className="gradient-text-fire">clés</span>
+          </h2>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {project.features.map((feature, i) => {
+              const Icon = getIcon(feature.iconName);
+              return (
+                <StaggerItem key={i}>
+                  <div className="glass-card rounded-xl p-5 h-full">
+                    <div className="w-10 h-10 rounded-lg bg-altevo-yellow/10 flex items-center justify-center mb-3">
+                      <Icon className="w-5 h-5 text-altevo-yellow" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
+                    <h3 className="text-white font-semibold text-sm mb-1">{feature.title}</h3>
+                    <p className="text-zinc-400 text-xs leading-relaxed">{feature.description}</p>
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
       </div>
     </section>
   );

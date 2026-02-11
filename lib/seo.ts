@@ -90,7 +90,7 @@ export function generateJsonLd() {
     url: siteConfig.url,
     logo: `${siteConfig.url}/logo.svg`,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
-    telephone: "+33600000000",
+    telephone: "+33602699258",
     email: "contact@altevo.fr",
     address: {
       "@type": "PostalAddress",

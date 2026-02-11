@@ -1,24 +1,48 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { Logo } from "@/components/Logo";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const navLinks = [
-  { href: "/", label: "Accueil" },
-  { href: "/services", label: "Services" },
-  { href: "/realisations", label: "Réalisations" },
-  { href: "/apropos", label: "À propos" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Accueil", description: "Retour à l'accueil" },
+  { href: "/services", label: "Services", description: "Ce que nous faisons" },
+  { href: "/realisations", label: "Réalisations", description: "Nos projets livrés" },
+  { href: "/apropos", label: "À propos", description: "Notre histoire" },
+  { href: "/contact", label: "Contact", description: "Discutons ensemble" },
 ];
+
+// Animated hamburger icon component
+function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <div className="w-6 h-5 flex flex-col justify-center items-center relative">
+      <span
+        className={cn(
+          "block h-[2px] w-6 bg-current rounded-full transition-all duration-300 ease-out absolute",
+          isOpen ? "rotate-45 top-[9px]" : "top-[3px]"
+        )}
+      />
+      <span
+        className={cn(
+          "block h-[2px] w-4 bg-current rounded-full transition-all duration-300 ease-out absolute top-[9px]",
+          isOpen ? "opacity-0 scale-0" : "opacity-100 scale-100"
+        )}
+      />
+      <span
+        className={cn(
+          "block h-[2px] w-6 bg-current rounded-full transition-all duration-300 ease-out absolute",
+          isOpen ? "-rotate-45 top-[9px]" : "top-[15px]"
+        )}
+      />
+    </div>
+  );
+}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,7 +54,6 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -50,114 +73,244 @@ export function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+  }, []);
+
+  // Mobile menu animation variants
+  const overlayVariants = {
+    closed: { opacity: 0 },
+    open: { opacity: 1 },
+  };
+
+  const menuVariants = prefersReducedMotion
+    ? { closed: { opacity: 0 }, open: { opacity: 1 } }
+    : {
+        closed: { opacity: 0, x: "100%" },
+        open: {
+          opacity: 1,
+          x: "0%",
+          transition: { type: "spring", damping: 30, stiffness: 300 },
+        },
+      };
+
+  const linkVariants = prefersReducedMotion
+    ? { closed: { opacity: 0 }, open: { opacity: 1 } }
+    : {
+        closed: { opacity: 0, x: 40 },
+        open: (i: number) => ({
+          opacity: 1,
+          x: 0,
+          transition: { delay: 0.1 + i * 0.06, duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+        }),
+      };
+
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "glass shadow-lg shadow-black/5"
-          : "bg-transparent"
-      )}
-    >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Logo />
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          isScrolled
+            ? "glass shadow-lg shadow-black/20"
+            : "bg-transparent"
+        )}
+      >
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            <Logo />
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    pathname === link.href
+                      ? "text-altevo-yellow"
+                      : "text-zinc-400 hover:text-white"
+                  )}
+                >
+                  {link.label}
+                  {pathname === link.href && (
+                    <motion.div
+                      layoutId="navbar-indicator"
+                      className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-altevo-yellow to-altevo-orange rounded-full"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                </Link>
+              ))}
+            </div>
+
+            {/* Desktop CTA */}
+            <div className="hidden md:flex items-center gap-3">
               <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                  pathname === link.href
-                    ? "text-altevo-violet-light bg-altevo-violet/10"
-                    : "text-slate-300 hover:text-white hover:bg-white/5"
-                )}
+                href="/contact"
+                className="magnetic-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-semibold text-sm hover:shadow-lg hover:shadow-altevo-yellow/25 transition-all duration-300"
               >
-                {link.label}
+                Demander un devis
+                <ArrowRight className="w-4 h-4" />
               </Link>
-            ))}
-          </div>
+            </div>
 
-          {/* Desktop CTA & Theme Toggle */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
-            <Button asChild>
-              <Link href="/contact">Demander un devis</Link>
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
+            {/* Mobile Menu Button — z-[60] so it stays above the panel */}
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={cn(
+                "md:hidden relative z-[60] p-2 -mr-2 rounded-lg transition-colors duration-200",
+                isMobileMenuOpen
+                  ? "text-white"
+                  : "text-zinc-400 hover:text-white"
+              )}
               aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
+              <HamburgerIcon isOpen={isMobileMenuOpen} />
+            </button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Fullscreen Menu — rendered OUTSIDE header to avoid stacking context issues */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden absolute inset-x-0 top-full bg-altevo-dark/95 backdrop-blur-xl border-t border-white/5 shadow-xl shadow-black/20 max-h-[calc(100vh-4rem)] overflow-y-auto"
-          >
-            <div className="container mx-auto px-4 py-4">
-              <div className="flex flex-col gap-1">
-                {navLinks.map((link, index) => (
-                  <motion.div
-                    key={link.href}
-                    initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
-                    <Link
-                      href={link.href}
-                      className={cn(
-                        "block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200",
-                        pathname === link.href
-                          ? "text-altevo-violet-light bg-altevo-violet/10"
-                          : "text-slate-300 hover:text-white hover:bg-white/5"
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              key="mobile-overlay"
+              variants={overlayVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed inset-0 bg-black/60 z-50"
+              onClick={closeMobileMenu}
+              aria-hidden="true"
+            />
 
-              <motion.div
-                initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="mt-4 pt-4 border-t border-altevo-dark-accent"
-              >
-                <Button asChild className="w-full">
-                  <Link href="/contact">Demander un devis</Link>
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
+            {/* Menu panel */}
+            <motion.div
+              key="mobile-menu"
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed inset-y-0 right-0 w-full max-w-[320px] z-[55] flex flex-col bg-altevo-black/95 backdrop-blur-2xl border-l border-altevo-dark-accent/30"
+            >
+              {/* Top gradient accent */}
+              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-altevo-yellow/8 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-altevo-orange/5 to-transparent pointer-events-none" />
+
+              {/* Spacer for header height */}
+              <div className="h-16 shrink-0" />
+
+              {/* Navigation links */}
+              <div className="flex-1 flex flex-col px-6 pt-4 pb-6 overflow-y-auto">
+                <div className="space-y-1">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      key={link.href}
+                      variants={linkVariants}
+                      custom={index}
+                      initial="closed"
+                      animate="open"
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={closeMobileMenu}
+                        className={cn(
+                          "group flex items-center gap-4 px-4 py-4 rounded-xl transition-all duration-200",
+                          pathname === link.href
+                            ? "bg-altevo-yellow/8 border border-altevo-yellow/15"
+                            : "hover:bg-white/[0.03]"
+                        )}
+                      >
+                        {/* Active indicator dot */}
+                        <div
+                          className={cn(
+                            "w-2 h-2 rounded-full shrink-0 transition-all duration-300",
+                            pathname === link.href
+                              ? "bg-altevo-yellow shadow-sm shadow-altevo-yellow/50"
+                              : "bg-zinc-700 group-hover:bg-zinc-500"
+                          )}
+                        />
+
+                        <div className="flex-1 min-w-0">
+                          <div
+                            className={cn(
+                              "text-base font-semibold transition-colors duration-200",
+                              pathname === link.href
+                                ? "text-altevo-yellow"
+                                : "text-white group-hover:text-altevo-yellow"
+                            )}
+                          >
+                            {link.label}
+                          </div>
+                          <div className="text-xs text-zinc-600 mt-0.5">
+                            {link.description}
+                          </div>
+                        </div>
+
+                        <ArrowRight
+                          className={cn(
+                            "w-4 h-4 shrink-0 transition-all duration-200",
+                            pathname === link.href
+                              ? "text-altevo-yellow/60"
+                              : "text-zinc-700 group-hover:text-zinc-400 group-hover:translate-x-0.5"
+                          )}
+                        />
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Spacer */}
+                <div className="flex-1" />
+
+                {/* CTA Button */}
+                <motion.div
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  className="mt-6 pt-6 border-t border-altevo-dark-accent/30"
+                >
+                  <Link
+                    href="/contact"
+                    onClick={closeMobileMenu}
+                    className="magnetic-btn flex items-center justify-center gap-2 w-full px-5 py-4 rounded-xl bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-bold text-sm shadow-lg shadow-altevo-yellow/20"
+                  >
+                    Demander un devis
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+
+                  <p className="text-center text-[11px] text-zinc-600 mt-3 font-mono">
+                    Réponse sous 24h &middot; Gratuit
+                  </p>
+                </motion.div>
+
+                {/* Contact info */}
+                <motion.div
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
+                  className="mt-4 flex items-center justify-center gap-4 text-xs text-zinc-700"
+                >
+                  <a href="mailto:contact@altevo.fr" className="hover:text-altevo-yellow transition-colors">
+                    contact@altevo.fr
+                  </a>
+                  <span>&middot;</span>
+                  <a href="tel:+33602699258" className="hover:text-altevo-yellow transition-colors">
+                    06 02 69 92 58
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

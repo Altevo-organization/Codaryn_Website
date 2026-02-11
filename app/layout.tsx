@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/layout/BackToTop";
-import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { AuroraBackground } from "@/components/AuroraBackground";
 import { Toaster } from "@/components/ui/toaster";
 import { generateMetadata as createMetadata, generateJsonLd } from "@/lib/seo";
 
@@ -17,9 +16,15 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains",
+});
+
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Altévo - Création de logiciels sur mesure",
+    title: "Altévo - Logiciels sur mesure & Performance digitale",
     description:
       "Altévo conçoit et déploie des logiciels sur mesure pour les entreprises : PGI, ERP, applications web et mobiles, intégrations et automatisations. Solutions performantes, sécurisées et évolutives.",
     path: "",
@@ -33,10 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0A1628" },
-  ],
+  themeColor: "#09090b",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -50,7 +52,7 @@ export default function RootLayout({
   const jsonLd = generateJsonLd();
 
   return (
-    <html lang="fr" suppressHydrationWarning className={inter.variable}>
+    <html lang="fr" className={`${inter.variable} ${jetbrains.variable} dark`}>
       <head>
         <script
           type="application/ld+json"
@@ -58,19 +60,12 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AnimatedBackground />
-          <Navbar />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-          <BackToTop />
-          <Toaster />
-        </ThemeProvider>
+        <AuroraBackground />
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+        <BackToTop />
+        <Toaster />
       </body>
     </html>
   );
