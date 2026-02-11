@@ -380,7 +380,7 @@ export const projects: Project[] = [
     duration: "2 mois",
     year: "2025",
     demoType: "live",
-    demoUrl: "https://portail-demo.altevo.fr",
+    demoUrl: "https://altevo-demo-clientportal.vercel.app/login",
     confidentialityLevel: "public",
     screenshots: [],
   },
