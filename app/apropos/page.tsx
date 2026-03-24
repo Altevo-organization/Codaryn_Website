@@ -9,7 +9,7 @@ import { StaggerContainer, StaggerItem } from "@/components/MotionWrapper";
 
 export const metadata: Metadata = generateMetadata({
   title: "À propos",
-  description: "Découvrez Altévo, créateur de logiciels sur mesure. Notre mission, nos valeurs et notre approche pour accompagner les entreprises dans leur transformation numérique.",
+  description: "Découvrez Codaryn, studio d'ingénierie logicielle. Notre mission, nos valeurs et notre approche pour concevoir des systèmes fiables et évolutifs.",
   path: "/apropos",
 });
 
@@ -31,7 +31,7 @@ export default function AProposPage() {
             badge="À propos"
             title="Créateurs de logiciels"
             highlightedWord="sur mesure"
-            description="Altévo conçoit et déploie des solutions logicielles performantes pour les entreprises qui veulent se démarquer."
+            description="Codaryn conçoit et déploie des systèmes logiciels fiables pour les entreprises qui exigent qualité et rigueur."
           />
         </div>
       </section>
@@ -44,7 +44,7 @@ export default function AProposPage() {
               <div className="glass-card rounded-2xl p-6 md:p-8">
                 <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">Notre mission</h2>
                 <p className="text-zinc-300 text-sm md:text-base leading-relaxed mb-3 md:mb-4">
-                  Altévo est né de la conviction que chaque entreprise mérite des outils numériques
+                  Codaryn est né de la conviction que chaque entreprise mérite des outils numériques
                   à la hauteur de ses ambitions. Trop souvent, les solutions génériques ne répondent
                   pas aux besoins spécifiques des métiers.
                 </p>
@@ -128,7 +128,7 @@ export default function AProposPage() {
 
       <CTA
         title="Travaillons ensemble ?"
-        description="Discutons de vos projets et voyons comment Altévo peut vous accompagner dans votre transformation numérique."
+        description="Discutons de vos projets et voyons comment Codaryn peut concevoir la solution technique adaptée à vos besoins."
       />
     </>
   );

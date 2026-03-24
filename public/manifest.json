@@ -1,11 +1,11 @@
 {
-  "name": "Altévo - Création de logiciels sur mesure",
-  "short_name": "Altévo",
-  "description": "Création de logiciels sur mesure pour entreprises : PGI, ERP, applications web et mobiles, intégrations, automatisations.",
+  "name": "Codaryn — Software Studio",
+  "short_name": "Codaryn",
+  "description": "Studio d'ingénierie logicielle spécialisé dans la conception de systèmes fiables et évolutifs.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A1628",
-  "theme_color": "#7C3AED",
+  "background_color": "#0B0B0C",
+  "theme_color": "#4F7CFF",
   "icons": [
     {
       "src": "/icon-192.png",

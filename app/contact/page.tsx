@@ -9,7 +9,7 @@ import { FAQ } from "@/components/sections/FAQ";
 export const metadata: Metadata = generateMetadata({
   title: "Contact",
   description:
-    "Contactez Altévo pour discuter de votre projet de développement logiciel. Demande de devis gratuite, réponse sous 24h. Nous sommes à votre écoute.",
+    "Contactez Codaryn pour discuter de votre projet logiciel. Sans engagement, réponse sous 24h.",
   path: "/contact",
   keywords: [
     "contact développeur",
@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "contact@altevo.fr",
-    href: "mailto:contact@altevo.fr",
+    value: "contact@codaryn.com",
+    href: "mailto:contact@codaryn.com",
   },
   {
     icon: Phone,

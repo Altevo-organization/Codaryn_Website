@@ -1,26 +1,24 @@
 import { Metadata } from "next";
 
 const siteConfig = {
-  name: "Altévo",
+  name: "Codaryn",
   description:
-    "Création de logiciels sur mesure pour entreprises : PGI, ERP, applications web et mobiles, intégrations, automatisations. Solutions performantes et sécurisées.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://altevo.fr",
+    "Codaryn est un studio d'ingénierie logicielle spécialisé dans la conception de systèmes fiables et évolutifs : applications web, mobiles, intégrations API et infrastructure sur mesure.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://codaryn.com",
   ogImage: "/og-image.jpg",
-  creator: "Altévo",
+  creator: "Codaryn",
   keywords: [
+    "software studio",
     "développement logiciel sur mesure",
-    "logiciel entreprise",
-    "PGI",
-    "ERP sur mesure",
+    "ingénierie logicielle",
     "application web entreprise",
     "application mobile professionnelle",
     "intégration API",
-    "automatisation processus",
-    "développeur freelance",
+    "architecture logicielle",
     "création logiciel",
     "déploiement application",
     "maintenance logicielle",
-    "hébergement cloud",
+    "infrastructure cloud",
     "sécurité données",
   ],
 };
@@ -72,7 +70,7 @@ export function generateMetadata({
       title: fullTitle,
       description,
       images: [siteConfig.ogImage],
-      creator: "@altevo",
+      creator: "@codaryn",
     },
     robots: noIndex
       ? { index: false, follow: false }
@@ -91,7 +89,7 @@ export function generateJsonLd() {
     logo: `${siteConfig.url}/logo.svg`,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     telephone: "+33602699258",
-    email: "contact@altevo.fr",
+    email: "contact@codaryn.com",
     address: {
       "@type": "PostalAddress",
       addressCountry: "FR",
@@ -108,9 +106,9 @@ export function generateJsonLd() {
     priceRange: "€€€",
     openingHours: "Mo-Fr 09:00-18:00",
     sameAs: [
-      "https://linkedin.com/company/altevo",
-      "https://github.com/altevo",
-      "https://twitter.com/altevo",
+      "https://linkedin.com/company/codaryn",
+      "https://github.com/codaryn",
+      "https://twitter.com/codaryn",
     ],
     serviceType: [
       "Développement logiciel sur mesure",

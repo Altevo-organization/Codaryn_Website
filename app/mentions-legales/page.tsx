@@ -6,7 +6,7 @@ import { MotionDiv } from "@/components/MotionWrapper";
 export const metadata: Metadata = generateMetadata({
   title: "Mentions légales",
   description:
-    "Mentions légales du site Altévo. Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation du site.",
+    "Mentions légales du site Codaryn. Informations sur l'éditeur, l'hébergeur et les conditions d'utilisation du site.",
   path: "/mentions-legales",
   noIndex: true,
 });
@@ -28,7 +28,7 @@ export default function MentionsLegalesPage() {
               </h2>
               <div className="text-zinc-400 space-y-2">
                 <p>
-                  <strong className="text-zinc-300">Raison sociale :</strong> Altévo
+                  <strong className="text-zinc-300">Raison sociale :</strong> Codaryn
                 </p>
                 <p>
                   <strong className="text-zinc-300">Forme juridique :</strong> [À compléter]
@@ -42,10 +42,10 @@ export default function MentionsLegalesPage() {
                 <p>
                   <strong className="text-zinc-300">Email :</strong>{" "}
                   <a
-                    href="mailto:contact@altevo.fr"
+                    href="mailto:contact@codaryn.com"
                     className="text-altevo-yellow hover:underline"
                   >
-                    contact@altevo.fr
+                    contact@codaryn.com
                   </a>
                 </p>
                 <p>
@@ -94,7 +94,7 @@ export default function MentionsLegalesPage() {
                 intellectuelle. Toute reproduction, représentation, modification,
                 publication ou adaptation de tout ou partie des éléments du site,
                 quel que soit le moyen ou le procédé utilisé, est interdite sans
-                l&apos;autorisation écrite préalable d&apos;Altévo.
+                l&apos;autorisation écrite préalable d&apos;Codaryn.
               </p>
               <p className="text-zinc-400 mt-4">
                 Toute exploitation non autorisée du site ou de son contenu sera
@@ -110,7 +110,7 @@ export default function MentionsLegalesPage() {
                 Limitation de responsabilité
               </h2>
               <p className="text-zinc-400">
-                Altévo s&apos;efforce de fournir des informations aussi précises que
+                Codaryn s&apos;efforce de fournir des informations aussi précises que
                 possible sur ce site. Toutefois, elle ne pourra être tenue
                 responsable des omissions, des inexactitudes et des carences dans
                 la mise à jour, qu&apos;elles soient de son fait ou du fait des tiers
@@ -130,7 +130,7 @@ export default function MentionsLegalesPage() {
               </h2>
               <p className="text-zinc-400">
                 Le site peut contenir des liens vers d&apos;autres sites internet.
-                Altévo n&apos;exerce aucun contrôle sur ces sites et décline toute
+                Codaryn n&apos;exerce aucun contrôle sur ces sites et décline toute
                 responsabilité quant à leur contenu et à leur politique de
                 confidentialité.
               </p>

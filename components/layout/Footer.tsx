@@ -24,9 +24,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { label: "LinkedIn", href: "https://linkedin.com/company/altevo", icon: Linkedin },
-  { label: "GitHub", href: "https://github.com/altevo", icon: Github },
-  { label: "Twitter", href: "https://twitter.com/altevo", icon: Twitter },
+  { label: "LinkedIn", href: "https://linkedin.com/company/codaryn", icon: Linkedin },
+  { label: "GitHub", href: "https://github.com/codaryn", icon: Github },
+  { label: "Twitter", href: "https://twitter.com/codaryn", icon: Twitter },
 ];
 
 export function Footer() {
@@ -41,8 +41,8 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <Logo className="mb-3 md:mb-4" />
             <p className="text-zinc-500 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
-              Création de logiciels sur mesure pour les entreprises.
-              Solutions performantes, sécurisées et évolutives.
+              Studio d'ingénierie logicielle. Nous concevons des
+              systèmes fiables et évolutifs pour entreprises ambitieuses.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
@@ -100,11 +100,11 @@ export function Footer() {
             <ul className="space-y-2.5 md:space-y-3">
               <li>
                 <a
-                  href="mailto:contact@altevo.fr"
+                  href="mailto:contact@codaryn.com"
                   className="flex items-center gap-2 md:gap-3 text-zinc-500 hover:text-altevo-yellow transition-colors duration-200 text-xs md:text-sm"
                 >
                   <Mail className="w-3.5 h-3.5 md:w-4 md:h-4 shrink-0" />
-                  <span>contact@altevo.fr</span>
+                  <span>contact@codaryn.com</span>
                 </a>
               </li>
               <li>
@@ -129,7 +129,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="py-4 md:py-6 border-t border-altevo-dark-accent/50 flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4">
           <p className="text-zinc-600 text-xs md:text-sm">
-            &copy; {currentYear} Altévo. Tous droits réservés.
+            &copy; {currentYear} Codaryn. Tous droits réservés.
           </p>
           <div className="flex gap-4 md:gap-6">
             {footerLinks.legal.map((link) => (

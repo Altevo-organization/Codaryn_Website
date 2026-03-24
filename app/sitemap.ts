@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllProjectSlugs } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://altevo.fr";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://codaryn.com";
   const currentDate = new Date();
 
   // Static pages

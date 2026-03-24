@@ -24,9 +24,9 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Altévo - Logiciels sur mesure & Performance digitale",
+    title: "Codaryn — Software Studio",
     description:
-      "Altévo conçoit et déploie des logiciels sur mesure pour les entreprises : PGI, ERP, applications web et mobiles, intégrations et automatisations. Solutions performantes, sécurisées et évolutives.",
+      "Codaryn est un studio d'ingénierie logicielle spécialisé dans la conception de systèmes fiables et évolutifs : applications web, mobiles, intégrations API et infrastructure sur mesure.",
     path: "",
   }),
   manifest: "/manifest.json",

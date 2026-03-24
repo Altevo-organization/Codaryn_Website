@@ -141,7 +141,7 @@ function scanDirectory(dirPath: string): ScannedProject | null {
 }
 
 function main() {
-  console.log("=== Altévo Project Scanner ===\n");
+  console.log("=== Codaryn Project Scanner ===\n");
   console.log(`Scanning: ${FREELANCE_DIR}\n`);
 
   if (!fs.existsSync(FREELANCE_DIR)) {

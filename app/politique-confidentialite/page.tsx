@@ -7,7 +7,7 @@ import { MotionDiv } from "@/components/MotionWrapper";
 export const metadata: Metadata = generateMetadata({
   title: "Politique de confidentialité",
   description:
-    "Politique de confidentialité d'Altévo. Informations sur la collecte, l'utilisation et la protection de vos données personnelles.",
+    "Politique de confidentialité d'Codaryn. Informations sur la collecte, l'utilisation et la protection de vos données personnelles.",
   path: "/politique-confidentialite",
   noIndex: true,
 });
@@ -25,11 +25,11 @@ export default function PolitiqueConfidentialitePage() {
             {/* Introduction */}
             <section>
               <p className="text-zinc-400">
-                Altévo accorde une grande importance à la protection de vos
+                Codaryn accorde une grande importance à la protection de vos
                 données personnelles. Cette politique de confidentialité vous
                 informe sur la manière dont nous collectons, utilisons et
                 protégeons vos informations lorsque vous utilisez notre site web
-                altevo.fr.
+                codaryn.com.
               </p>
             </section>
 
@@ -39,7 +39,7 @@ export default function PolitiqueConfidentialitePage() {
                 Responsable du traitement
               </h2>
               <p className="text-zinc-400">
-                Le responsable du traitement des données est Altévo, dont les
+                Le responsable du traitement des données est Codaryn, dont les
                 coordonnées sont disponibles dans les{" "}
                 <Link
                   href="/mentions-legales"
@@ -127,7 +127,7 @@ export default function PolitiqueConfidentialitePage() {
                 Destinataires des données
               </h2>
               <p className="text-zinc-400">
-                Vos données personnelles sont destinées uniquement à Altévo pour
+                Vos données personnelles sont destinées uniquement à Codaryn pour
                 le traitement de vos demandes. Elles ne sont pas transmises à des
                 tiers, sauf obligation légale.
               </p>
@@ -211,10 +211,10 @@ export default function PolitiqueConfidentialitePage() {
               <p className="text-zinc-400 mt-4">
                 Pour exercer ces droits, contactez-nous à{" "}
                 <a
-                  href="mailto:contact@altevo.fr"
+                  href="mailto:contact@codaryn.com"
                   className="text-altevo-yellow hover:underline"
                 >
-                  contact@altevo.fr
+                  contact@codaryn.com
                 </a>
                 . Nous répondrons dans un délai d&apos;un mois.
               </p>
@@ -258,10 +258,10 @@ export default function PolitiqueConfidentialitePage() {
                 <li>
                   Par email :{" "}
                   <a
-                    href="mailto:contact@altevo.fr"
+                    href="mailto:contact@codaryn.com"
                     className="text-altevo-yellow hover:underline"
                   >
-                    contact@altevo.fr
+                    contact@codaryn.com
                   </a>
                 </li>
                 <li>

@@ -12,10 +12,10 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const navLinks = [
   { href: "/", label: "Accueil", description: "Retour à l'accueil" },
-  { href: "/services", label: "Services", description: "Ce que nous faisons" },
-  { href: "/realisations", label: "Réalisations", description: "Nos projets livrés" },
-  { href: "/apropos", label: "À propos", description: "Notre histoire" },
-  { href: "/contact", label: "Contact", description: "Discutons ensemble" },
+  { href: "/services", label: "Services", description: "Ce que nous construisons" },
+  { href: "/realisations", label: "Réalisations", description: "Projets livrés" },
+  { href: "/apropos", label: "À propos", description: "Notre studio" },
+  { href: "/contact", label: "Contact", description: "Parlons de votre projet" },
 ];
 
 // Animated hamburger icon component
@@ -148,9 +148,9 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-3">
               <Link
                 href="/contact"
-                className="magnetic-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-semibold text-sm hover:shadow-lg hover:shadow-altevo-yellow/25 transition-all duration-300"
+                className="magnetic-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-altevo-yellow text-white font-semibold text-sm hover:bg-altevo-yellow-light hover:shadow-lg hover:shadow-altevo-yellow/20 transition-all duration-200"
               >
-                Demander un devis
+                Démarrer un projet
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -198,11 +198,11 @@ export function Navbar() {
               animate="open"
               exit="closed"
               transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-y-0 right-0 w-full max-w-[320px] z-[55] flex flex-col bg-altevo-black/95 backdrop-blur-2xl border-l border-altevo-dark-accent/30"
+              className="md:hidden fixed inset-y-0 right-0 w-full max-w-[300px] z-[55] flex flex-col bg-altevo-dark backdrop-blur-2xl border-l border-altevo-dark-accent/40"
             >
               {/* Top gradient accent */}
-              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-altevo-yellow/8 to-transparent pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-altevo-orange/5 to-transparent pointer-events-none" />
+              <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-altevo-yellow/5 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-altevo-orange/3 to-transparent pointer-events-none" />
 
               {/* Spacer for header height */}
               <div className="h-16 shrink-0" />
@@ -280,14 +280,14 @@ export function Navbar() {
                   <Link
                     href="/contact"
                     onClick={closeMobileMenu}
-                    className="magnetic-btn flex items-center justify-center gap-2 w-full px-5 py-4 rounded-xl bg-gradient-to-r from-altevo-yellow to-altevo-orange text-altevo-black font-bold text-sm shadow-lg shadow-altevo-yellow/20"
+                    className="magnetic-btn flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-lg bg-altevo-yellow text-white font-semibold text-sm"
                   >
-                    Demander un devis
+                    Démarrer un projet
                     <ArrowRight className="w-4 h-4" />
                   </Link>
 
                   <p className="text-center text-[11px] text-zinc-600 mt-3 font-mono">
-                    Réponse sous 24h &middot; Gratuit
+                    Réponse sous 24h &middot; Sans engagement
                   </p>
                 </motion.div>
 
@@ -298,12 +298,8 @@ export function Navbar() {
                   transition={{ delay: 0.5, duration: 0.3 }}
                   className="mt-4 flex items-center justify-center gap-4 text-xs text-zinc-700"
                 >
-                  <a href="mailto:contact@altevo.fr" className="hover:text-altevo-yellow transition-colors">
-                    contact@altevo.fr
-                  </a>
-                  <span>&middot;</span>
-                  <a href="tel:+33602699258" className="hover:text-altevo-yellow transition-colors">
-                    06 02 69 92 58
+                  <a href="mailto:contact@codaryn.com" className="hover:text-altevo-yellow transition-colors">
+                    contact@codaryn.com
                   </a>
                 </motion.div>
               </div>

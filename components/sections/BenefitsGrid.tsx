@@ -17,7 +17,7 @@ export function BenefitsGrid() {
     <div>
       <MotionDiv className="text-center mb-8 md:mb-12">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
-          Pourquoi choisir <span className="gradient-text-fire">Altévo</span>
+          Pourquoi choisir <span className="gradient-text">Codaryn</span>
         </h2>
       </MotionDiv>
 

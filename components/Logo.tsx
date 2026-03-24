@@ -9,18 +9,23 @@ export function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <Link
       href="/"
-      className={`flex items-center gap-2.5 group ${className}`}
-      aria-label="Altévo - Accueil"
+      className={`flex items-center gap-3 group ${className}`}
+      aria-label="Codaryn Software Studio — Accueil"
     >
-      <div className="relative w-9 h-9 rounded-lg bg-gradient-to-br from-altevo-yellow via-altevo-orange to-altevo-red flex items-center justify-center overflow-hidden shadow-lg shadow-altevo-yellow/20 group-hover:shadow-altevo-yellow/40 transition-shadow duration-300">
-        <span className="text-altevo-black font-bold text-lg relative z-10">A</span>
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/20" />
+      {/* Wordmark icon: stylised "C" mark */}
+      <div className="relative w-8 h-8 rounded-md bg-altevo-yellow/10 border border-altevo-yellow/20 flex items-center justify-center shrink-0 group-hover:bg-altevo-yellow/15 group-hover:border-altevo-yellow/35 transition-all duration-200">
+        <span className="text-altevo-yellow font-bold text-sm font-mono leading-none">C</span>
       </div>
+
       {showText && (
-        <span className="text-xl font-bold tracking-tight">
-          <span className="text-white">Alté</span>
-          <span className="gradient-text">vo</span>
-        </span>
+        <div className="flex flex-col leading-none">
+          <span className="text-white font-semibold text-base tracking-tight">
+            Codaryn
+          </span>
+          <span className="text-altevo-gray-light text-[10px] font-medium tracking-widest uppercase mt-0.5">
+            Software Studio
+          </span>
+        </div>
       )}
     </Link>
   );

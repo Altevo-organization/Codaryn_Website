@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
 
     // Format the email content
     const emailContent = `
-Nouvelle demande de contact via le site Altévo
+Nouvelle demande de contact via le site Codaryn
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -128,7 +128,7 @@ Date: ${new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" })}
 IP: ${clientIp}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Cet email a été envoyé automatiquement depuis le formulaire de contact du site altevo.fr
+Cet email a été envoyé automatiquement depuis le formulaire de contact du site codaryn.com
     `.trim();
 
     // HTML version of the email
@@ -142,7 +142,7 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: linear-gradient(135deg, #0A1628 0%, #0F2847 100%); padding: 30px; border-radius: 12px 12px 0 0;">
     <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Nouvelle demande de contact</h1>
-    <p style="color: #A78BFA; margin: 5px 0 0 0;">via le site Altévo</p>
+    <p style="color: #A78BFA; margin: 5px 0 0 0;">via le site Codaryn</p>
   </div>
 
   <div style="background: #f8fafc; padding: 30px; border: 1px solid #e2e8f0; border-top: none;">
@@ -192,7 +192,7 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
       IP: ${clientIp}
     </p>
     <p style="color: #94a3b8; font-size: 11px; margin: 15px 0 0 0; text-align: center;">
-      Cet email a été envoyé automatiquement depuis le formulaire de contact du site altevo.fr
+      Cet email a été envoyé automatiquement depuis le formulaire de contact du site codaryn.com
     </p>
   </div>
 </body>
@@ -201,10 +201,10 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
 
     // Send the email
     await transporter.sendMail({
-      from: `"Altévo - Contact" <${smtpUser}>`,
+      from: `"Codaryn - Contact" <${smtpUser}>`,
       to: emailTo,
       replyTo: email,
-      subject: `[Altévo] ${subject}`,
+      subject: `[Codaryn] ${subject}`,
       text: emailContent,
       html: htmlContent,
     });
