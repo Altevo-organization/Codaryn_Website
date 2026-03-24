@@ -1,0 +1,113 @@
+{
+  "scannedAt": "2026-02-10T20:30:34.394Z",
+  "directory": "C:\\Users\\max\\Documents\\freelance",
+  "projects": [
+    {
+      "folder": "Alt-vo-Booking",
+      "stack": [
+        "Prisma",
+        "date-fns",
+        "Framer Motion",
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "TypeScript",
+        "Zod"
+      ],
+      "scripts": [
+        "dev",
+        "build",
+        "start",
+        "lint",
+        "format",
+        "db:generate",
+        "db:push",
+        "db:studio",
+        "seed:demo",
+        "setup"
+      ],
+      "description": ""
+    },
+    {
+      "folder": "Alt-vo-Client-Portal",
+      "stack": [
+        "Prisma",
+        "bcrypt",
+        "date-fns",
+        "Framer Motion",
+        "JWT",
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "TypeScript",
+        "Zod"
+      ],
+      "scripts": [
+        "dev",
+        "build",
+        "start",
+        "lint",
+        "db:generate",
+        "db:migrate",
+        "db:push",
+        "db:seed",
+        "db:reset",
+        "seed:demo",
+        "setup"
+      ],
+      "description": "Altévo Client Portal - Portail client sécurisé B2B"
+    },
+    {
+      "folder": "altevo_manager-project1-",
+      "stack": [
+        "Prisma",
+        "TypeScript",
+        "Docker"
+      ],
+      "scripts": [
+        "dev",
+        "dev:api",
+        "dev:web",
+        "build",
+        "build:api",
+        "build:web",
+        "lint",
+        "lint:fix",
+        "format",
+        "test",
+        "test:api",
+        "test:web",
+        "test:e2e",
+        "test:coverage",
+        "db:migrate",
+        "db:push",
+        "db:seed",
+        "db:studio",
+        "db:generate",
+        "docker:up",
+        "docker:down",
+        "setup"
+      ],
+      "description": ""
+    },
+    {
+      "folder": "Altevo_website",
+      "stack": [
+        "Framer Motion",
+        "Next.js",
+        "React",
+        "React Hook Form",
+        "Zod",
+        "Tailwind CSS",
+        "TypeScript"
+      ],
+      "scripts": [
+        "dev",
+        "build",
+        "start",
+        "lint"
+      ],
+      "description": ""
+    }
+  ]
+}
