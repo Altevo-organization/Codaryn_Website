@@ -341,7 +341,7 @@ export const projects: Project[] = [
     duration: "En continu",
     year: "2024-2025",
     demoType: "live",
-    demoUrl: "https://codaryn-demo-erp.vercel.app",
+    demoUrl: "https://codaryn-demo-lv7o5cyik-mxbhrs-projects.vercel.app",
     confidentialityLevel: "public",
     screenshots: [],
   },
