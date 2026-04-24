@@ -54,7 +54,6 @@ export async function POST(request: NextRequest) {
 
     // Honeypot check - if website field is filled, it's a bot
     if (website) {
-      // Silently succeed to not tip off bots
       return NextResponse.json({
         success: true,
         message: "Message envoyé avec succès",
@@ -80,58 +79,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create email transporter
     const transporter = nodemailer.createTransport({
       host: smtpHost,
       port: parseInt(smtpPort || "587", 10),
-      secure: smtpPort === "465", // true for 465, false for other ports
+      secure: smtpPort === "465",
       auth: {
         user: smtpUser,
         pass: smtpPass,
       },
     });
 
-    // Format the email content
-    const emailContent = `
-Nouvelle demande de contact via le site Codaryn
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📧 INFORMATIONS DU CONTACT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Nom: ${name}
-Email: ${email}
-${company ? `Entreprise: ${company}` : ""}
-${phone ? `Téléphone: ${phone}` : ""}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📝 SUJET
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${subject}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-💬 MESSAGE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-${message}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📊 MÉTADONNÉES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Date: ${new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" })}
-IP: ${clientIp}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Cet email a été envoyé automatiquement depuis le formulaire de contact du site codaryn.com
-    `.trim();
-
-    // HTML version of the email
     const htmlContent = `
 <!DOCTYPE html>
 <html lang="fr">
@@ -140,13 +97,13 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: linear-gradient(135deg, #0A1628 0%, #0F2847 100%); padding: 30px; border-radius: 12px 12px 0 0;">
+  <div style="background: linear-gradient(135deg, #0B0B0C 0%, #111318 100%); padding: 30px; border-radius: 12px 12px 0 0;">
     <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Nouvelle demande de contact</h1>
-    <p style="color: #A78BFA; margin: 5px 0 0 0;">via le site Codaryn</p>
+    <p style="color: #4F7CFF; margin: 5px 0 0 0;">via le site Codaryn</p>
   </div>
 
   <div style="background: #f8fafc; padding: 30px; border: 1px solid #e2e8f0; border-top: none;">
-    <h2 style="color: #0A1628; font-size: 18px; margin-top: 0; padding-bottom: 10px; border-bottom: 2px solid #7C3AED;">
+    <h2 style="color: #0A1628; font-size: 18px; margin-top: 0; padding-bottom: 10px; border-bottom: 2px solid #4F7CFF;">
       📧 Informations du contact
     </h2>
     <table style="width: 100%; border-collapse: collapse;">
@@ -156,7 +113,7 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
       </tr>
       <tr>
         <td style="padding: 8px 0; color: #64748b;">Email</td>
-        <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #7C3AED;">${email}</a></td>
+        <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #4F7CFF;">${email}</a></td>
       </tr>
       ${company ? `
       <tr>
@@ -167,17 +124,17 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
       ${phone ? `
       <tr>
         <td style="padding: 8px 0; color: #64748b;">Téléphone</td>
-        <td style="padding: 8px 0;"><a href="tel:${phone}" style="color: #7C3AED;">${phone}</a></td>
+        <td style="padding: 8px 0;"><a href="tel:${phone}" style="color: #4F7CFF;">${phone}</a></td>
       </tr>
       ` : ""}
     </table>
 
-    <h2 style="color: #0A1628; font-size: 18px; margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid #7C3AED;">
+    <h2 style="color: #0A1628; font-size: 18px; margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid #4F7CFF;">
       📝 Sujet
     </h2>
     <p style="color: #0A1628; font-weight: 500; margin: 15px 0;">${subject}</p>
 
-    <h2 style="color: #0A1628; font-size: 18px; margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid #7C3AED;">
+    <h2 style="color: #0A1628; font-size: 18px; margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid #4F7CFF;">
       💬 Message
     </h2>
     <div style="background: #ffffff; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 15px;">
@@ -199,13 +156,11 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
 </html>
     `.trim();
 
-    // Send the email
     await transporter.sendMail({
       from: `"Codaryn - Contact" <${smtpUser}>`,
       to: emailTo,
       replyTo: email,
-      subject: `[Codaryn] ${subject}`,
-      text: emailContent,
+      subject: `[Codaryn] ${subject} — ${name}`,
       html: htmlContent,
     });
 
@@ -223,7 +178,6 @@ Cet email a été envoyé automatiquement depuis le formulaire de contact du sit
   } catch (error) {
     console.error("Contact form error:", error);
 
-    // Don't expose internal errors to users
     return NextResponse.json(
       {
         success: false,

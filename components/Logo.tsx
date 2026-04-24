@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   className?: string;
@@ -12,10 +13,14 @@ export function Logo({ className = "", showText = true }: LogoProps) {
       className={`flex items-center gap-3 group ${className}`}
       aria-label="Codaryn Software Studio — Accueil"
     >
-      {/* Wordmark icon: stylised "C" mark */}
-      <div className="relative w-8 h-8 rounded-md bg-altevo-yellow/10 border border-altevo-yellow/20 flex items-center justify-center shrink-0 group-hover:bg-altevo-yellow/15 group-hover:border-altevo-yellow/35 transition-all duration-200">
-        <span className="text-altevo-yellow font-bold text-sm font-mono leading-none">C</span>
-      </div>
+      <Image
+        src="/codaryn_logo.png"
+        alt="Codaryn"
+        width={32}
+        height={32}
+        className="shrink-0"
+        priority
+      />
 
       {showText && (
         <div className="flex flex-col leading-none">
