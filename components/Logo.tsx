@@ -16,9 +16,9 @@ export function Logo({ className = "", showText = true }: LogoProps) {
       <Image
         src="/codaryn_logo.png"
         alt="Codaryn"
-        width={32}
-        height={32}
-        className="shrink-0"
+        width={40}
+        height={40}
+        className="shrink-0 object-contain"
         priority
       />
 
